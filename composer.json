@@ -1,0 +1,25 @@
+{
+    "name": "allyans3/protobuf-steam-auth",
+    "description": "description",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "allyans3",
+            "email": "email@example.com"
+        }
+    ],
+    "require": {
+        "allegro/php-protobuf": "^0.12.4",
+        "php-curl-class/php-curl-class": "^9.10",
+        "doctormckay/steam-totp": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SteamAuth\\": "src/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.4"
+    }
+}
