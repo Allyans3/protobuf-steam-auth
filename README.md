@@ -44,9 +44,9 @@ $auth->getCookiesByHost();
 
 By default, cookie saves in `$cookieStorage` attribute and can be retrieved by `getCookies()` or `getCookiesByHost()` methods.
 
-Optional, you can specify the path to your cookie file.
+Optional, you can specify the path to your cookie file in `cookie_file` key.
 
-Also, you can send your cookies as array to `cookie_storage``key.
+Also, you can send your cookies as array to `cookie_storage` key.
 
 ```php
 use SteamAuth\SteamAuth;
