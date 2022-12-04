@@ -1,8 +1,9 @@
 <p align="center"><a href="https://github.com/Allyans3/protobuf-steam-auth" target="_blank"><img src="https://raw.githubusercontent.com/Allyans3/protobuf-steam-auth/master/images/protobuf-steam-auth-logo.png" width="600" alt="Protobuf-Steam-Auth"></a></p>
 
 <p align="center">
-<a href="https://packagist.org/packages/Allyans3/protobuf-steam-auth"><img src="https://img.shields.io/packagist/v/Allyans3/protobuf-steam-auth?style=flat-square&logo=Composer" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/Allyans3/protobuf-steam-auth"><img src="https://img.shields.io/packagist/dt/Allyans3/protobuf-steam-auth?style=flat-square&logo=Composer" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/allyans3/protobuf-steam-auth"><img src="https://img.shields.io/packagist/v/allyans3/protobuf-steam-auth?style=flat-square&logo=Composer" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/allyans3/protobuf-steam-auth"><img src="https://img.shields.io/packagist/dt/allyans3/protobuf-steam-auth?style=flat-square&logo=Composer" alt="Total Downloads"></a>
+<a href="https://github.com/Allyans3/steam-market-api-v2"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FAllyans3%2Fprotobuf-steam-auth&count_bg=%2344CC10&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=visitors&edge_flat=true" alt="Visitors count"></a>
 <a href="https://github.com/Allyans3/protobuf-steam-auth"><img src="https://img.shields.io/packagist/l/Allyans3/protobuf-steam-auth?style=flat-square&color=3555555" alt="License"></a>
 </p>
 
