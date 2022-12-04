@@ -40,6 +40,48 @@ $auth->getCookiesByHost();
 
 ```
 
+## Cookie storage
+
+By default, cookie saves in `$cookieStorage` attribute and can be retrieved by `getCookies()` or `getCookiesByHost()` methods.
+
+Optional, you can specify the path to your cookie file.
+
+Also, you can send your cookies as array to `cookie_storage``key.
+
+```php
+use SteamAuth\SteamAuth;
+
+require "vendor/autoload.php";
+
+$cookieOptions = [
+    'cookie_file' => 'path_to_cookie_file',
+    
+    'cookie_storage' => [
+        "steamcommunity.com" => [
+            "sessionid"         => "*******"
+            "steamCountry"      => "*******"
+            "steamLoginSecure"  => "*******"
+        ],
+        "store.steampowered.com" => [
+            "sessionid"         => "*******"
+            "steamLoginSecure"  => "*******"
+        ],
+        "help.steampowered.com" => [
+            "sessionid"         => "*******"
+            "steamLoginSecure"  => "*******"
+        ],
+        "steam.tv" => [
+            "sessionid"         => "*******"
+            "steamCountry"      => "*******"
+            "steamLoginSecure"  => "*******"
+        ]
+    ]   
+];
+
+$auth = new SteamAuth('login', 'password', 'shared_secret', $cookieOptions);
+```
+
+
 ## Handle Exceptions
 
 ```php

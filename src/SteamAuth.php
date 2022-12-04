@@ -29,7 +29,8 @@ class SteamAuth
     private $password;
     private $sharedSecret;
 
-    private $cookieStorage;
+    private $cookieStorage = [];
+    private $cookieFile = '';
 
     const HEADERS = [
         'Origin' => "https://steamcommunity.com",
@@ -46,13 +47,19 @@ class SteamAuth
     ];
 
 
-    public function __construct($login, $password, $sharedSecret = null, $cookieStorage = [])
+    public function __construct($login, $password, $sharedSecret = null, array $cookieOptions = [])
     {
         $this->login = $login;
         $this->password = $password;
         $this->sharedSecret = $sharedSecret;
 
-        $this->cookieStorage = $cookieStorage;
+        self::setCookieOptions($cookieOptions);
+    }
+
+    private function setCookieOptions(array $options)
+    {
+        $this->cookieStorage = isset($options['cookie_storage']) ? $options['cookie_storage'] : $this->cookieStorage;
+        $this->cookieFile = isset($options['cookie_file']) ? $options['cookie_file'] : $this->cookieFile;
     }
 
     /**
@@ -64,7 +71,7 @@ class SteamAuth
     {
         if (self::isAuthorized())
             return true;
-        else if (!array_key_exists('sessionid', $this->cookieStorage))
+        else if (!array_key_exists('sessionid', self::getCookiesByHost()))
             self::getStartupCookies();
 
         $keys = self::getRSAKey();
@@ -274,6 +281,8 @@ class SteamAuth
         $curl->setConnectTimeout(30);
         $curl->setTimeout(60);
 
+        $curl->setCookieJar($this->cookieFile);
+
         $curl->get('https://steamcommunity.com/');
 
         if ($curl->error)
@@ -325,7 +334,10 @@ class SteamAuth
         $curl->setDefaultJsonDecoder($assoc = true);
         $curl->setConnectTimeout(30);
         $curl->setTimeout(60);
+
         $curl->setCookies(self::getCookiesByHost(self::getHostFromUrl($url)));
+        $curl->setCookieFile($this->cookieFile);
+        $curl->setCookieJar($this->cookieFile);
 
         $curl->post($url,
             [
@@ -351,7 +363,9 @@ class SteamAuth
         $curl->setDefaultJsonDecoder($assoc = true);
         $curl->setConnectTimeout(30);
         $curl->setTimeout(60);
+
         $curl->setCookies(self::getCookiesByHost());
+        $curl->setCookieFile($this->cookieFile);
 
         $curl->get('https://steamcommunity.com/chat/clientjstoken');
 
@@ -371,7 +385,10 @@ class SteamAuth
         $curl->setDefaultJsonDecoder($assoc = true);
         $curl->setConnectTimeout(30);
         $curl->setTimeout(60);
+
         $curl->setCookies(self::getCookiesByHost(self::getHostFromUrl($url)));
+        $curl->setCookieFile($this->cookieFile);
+        $curl->setCookieJar($this->cookieFile);
 
         $curl->get($url);
 
