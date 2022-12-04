@@ -58,21 +58,21 @@ $cookieOptions = [
     
     'cookie_storage' => [
         "steamcommunity.com" => [
-            "sessionid"         => "*******"
-            "steamCountry"      => "*******"
+            "sessionid"         => "*******",
+            "steamCountry"      => "*******",
             "steamLoginSecure"  => "*******"
         ],
         "store.steampowered.com" => [
-            "sessionid"         => "*******"
+            "sessionid"         => "*******",
             "steamLoginSecure"  => "*******"
         ],
         "help.steampowered.com" => [
-            "sessionid"         => "*******"
+            "sessionid"         => "*******",
             "steamLoginSecure"  => "*******"
         ],
         "steam.tv" => [
-            "sessionid"         => "*******"
-            "steamCountry"      => "*******"
+            "sessionid"         => "*******",
+            "steamCountry"      => "*******",
             "steamLoginSecure"  => "*******"
         ]
     ]   
