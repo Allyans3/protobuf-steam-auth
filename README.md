@@ -7,17 +7,37 @@
 <a href="https://github.com/Allyans3/protobuf-steam-auth"><img src="https://img.shields.io/packagist/l/Allyans3/protobuf-steam-auth?style=flat-square&color=3555555" alt="License"></a>
 </p>
 
+> To use this package you need to install php extension `protobuf`. Installation instructions are below.
+
 ## About Protobuf Steam Auth
 
 This package provides the ability to authorize to the Steam using Google Protobuf.
 
 ## Installation
 
-Run this text in a console to install this package from Packagist:
+1. Run this text in a console to install this package from Packagist:
 
 ```
 composer require allyans3/protobuf-steam-auth
 ```
+
+2. Copy folder `protobuf-ext` from `/vendor/allyans3/protobuf-steam-auth` to your project:
+
+```
+cp -a /vendor/allyans3/protobuf-steam-auth/protobuf-ext .
+```
+
+3. Build php extension with next commands:
+
+```
+cd protobuf-ext
+phpize
+./configure
+make
+make install
+```
+
+4. Add line `extension=protobuf.so` to your php.ini file
 
 ## Usage
 
