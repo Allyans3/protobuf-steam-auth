@@ -67,7 +67,7 @@ class SteamAuth
      * @throws SteamResponseException
      * @throws SteamErrorException
      */
-    public function login(): bool
+    public function login(string $code = null): bool
     {
         if (self::isAuthorized())
             return true;
@@ -81,7 +81,7 @@ class SteamAuth
 
         if ($authSession->getAllowedConfirmations()) {
             if (self::isTwoFactorRequired($authSession->getAllowedConfirmations()[0])) {
-                $twoFactorCode = SteamTotp::getAuthCode($this->sharedSecret);
+                $twoFactorCode = $code ?? SteamTotp::getAuthCode($this->sharedSecret);
 
                 self::updateAuthSession($authSession->getClientId(), $authSession->getSteamid(), $twoFactorCode,
                                         EAuthSessionGuardType::k_EAuthSessionGuardType_DeviceCode);
