@@ -11,7 +11,7 @@
 
 ## About Protobuf Steam Auth
 
-This package provides the ability to authorize to the Steam using Google Protobuf.
+This package provides the ability to authorize to the Steam using Google Protobuf. Support PHP 7+ and PHP 8+.
 
 ## Installation
 
@@ -27,10 +27,12 @@ composer require allyans3/protobuf-steam-auth
 cp -a /vendor/allyans3/protobuf-steam-auth/protobuf-ext .
 ```
 
-3. Build php extension with next commands:
+3. Build php extension with next commands choosing between `php 7` and `php 8` (Thanks to [Tankonyako](https://github.com/Tankonyako)):
 
 ```
-cd protobuf-ext
+cd protobuf-ext/php7 // For PHP 7
+cd protobuf-ext/php8 // For PHP 8
+
 phpize
 ./configure
 make

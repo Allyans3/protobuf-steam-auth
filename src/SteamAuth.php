@@ -21,10 +21,14 @@ use SteamAuth\pb2\ESessionPersistence;
 use SteamAuth\RSA\Crypt\Crypt_RSA;
 use SteamAuth\RSA\Math\MathBigInteger;
 use SteamAuth\Exceptions\SteamResponseException;
+use SteamAuth\Traits\CookieMethods;
+use SteamAuth\Traits\UsefulMethods;
 use SteamTotp\SteamTotp;
 
 class SteamAuth
 {
+    use CookieMethods, UsefulMethods;
+
     private $login;
     private $password;
     private $sharedSecret;
@@ -398,37 +402,6 @@ class SteamAuth
         self::updateCookieStorage($curl->responseCookies, self::getHostFromUrl($url));
     }
 
-
-    /**
-     * @return array|mixed
-     */
-    public function getCookies()
-    {
-        return $this->cookieStorage;
-    }
-
-    /**
-     * @param string $host
-     * @return array|mixed
-     */
-    public function getCookiesByHost(string $host = self::MAIN_HOST)
-    {
-        if (array_key_exists($host, $this->cookieStorage))
-            return $this->cookieStorage[$host];
-
-        return [];
-    }
-
-    /**
-     * @param $cookies
-     * @param string $host
-     */
-    public function updateCookieStorage($cookies, string $host = self::MAIN_HOST)
-    {
-        foreach ($cookies as $key => $value) {
-            $this->cookieStorage[$host][$key] = $value;
-        }
-    }
 
     /**
      * @param string $url

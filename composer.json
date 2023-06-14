@@ -10,9 +10,10 @@
         }
     ],
     "require": {
-        "allegro/php-protobuf": "^0.12.4",
         "php-curl-class/php-curl-class": ">=8.10.0",
-        "doctormckay/steam-totp": "^1.0"
+        "allegro/php-protobuf": "^0.12.4",
+        "ramsey/uuid": "^4.2",
+        "tankonyako/php-steam-totp": "dev-master"
     },
     "autoload": {
         "psr-4": {

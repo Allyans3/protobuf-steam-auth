@@ -1,0 +1,5 @@
+ARG_ENABLE("protobuf", "whether to enable protobuf support", "no");
+
+if (PHP_PROTOBUF != "no") {
+  EXTENSION("protobuf", "protobuf.c reader.c writer.c");
+}
