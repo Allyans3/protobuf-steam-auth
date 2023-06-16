@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto generated from steammessages_auth.steamclient.proto at 2022-12-01 11:15:30
+ * Auto generated from steammessages_auth.steamclient.proto at 2023-06-15 07:28:36
  */
 
 namespace SteamAuth\pb2 {
@@ -16,6 +16,8 @@ class CAuthentication_BeginAuthSessionViaCredentials_Response extends \ProtobufM
     const ALLOWED_CONFIRMATIONS = 4;
     const STEAMID = 5;
     const WEAK_TOKEN = 6;
+    const AGREEMENT_SESSION_URL = 7;
+    const EXTENDED_ERROR_MESSAGE = 8;
 
     /* @var array Field descriptors */
     protected static $fields = array(
@@ -49,6 +51,16 @@ class CAuthentication_BeginAuthSessionViaCredentials_Response extends \ProtobufM
             'required' => false,
             'type' => \ProtobufMessage::PB_TYPE_STRING,
         ),
+        self::AGREEMENT_SESSION_URL => array(
+            'name' => 'agreement_session_url',
+            'required' => false,
+            'type' => \ProtobufMessage::PB_TYPE_STRING,
+        ),
+        self::EXTENDED_ERROR_MESSAGE => array(
+            'name' => 'extended_error_message',
+            'required' => false,
+            'type' => \ProtobufMessage::PB_TYPE_STRING,
+        ),
     );
 
     /**
@@ -72,6 +84,8 @@ class CAuthentication_BeginAuthSessionViaCredentials_Response extends \ProtobufM
         $this->values[self::ALLOWED_CONFIRMATIONS] = array();
         $this->values[self::STEAMID] = null;
         $this->values[self::WEAK_TOKEN] = null;
+        $this->values[self::AGREEMENT_SESSION_URL] = null;
+        $this->values[self::EXTENDED_ERROR_MESSAGE] = null;
     }
 
     /**
@@ -186,11 +200,11 @@ class CAuthentication_BeginAuthSessionViaCredentials_Response extends \ProtobufM
     /**
      * Appends value to 'allowed_confirmations' list
      *
-     * @param \CAuthentication_AllowedConfirmation $value Value to append
+     * @param CAuthentication_AllowedConfirmation $value Value to append
      *
      * @return null
      */
-    public function appendAllowedConfirmations(\CAuthentication_AllowedConfirmation $value)
+    public function appendAllowedConfirmations(CAuthentication_AllowedConfirmation $value)
     {
         return $this->append(self::ALLOWED_CONFIRMATIONS, $value);
     }
@@ -208,7 +222,7 @@ class CAuthentication_BeginAuthSessionViaCredentials_Response extends \ProtobufM
     /**
      * Returns 'allowed_confirmations' list
      *
-     * @return \CAuthentication_AllowedConfirmation[]
+     * @return CAuthentication_AllowedConfirmation[]
      */
     public function getAllowedConfirmations()
     {
@@ -240,7 +254,7 @@ class CAuthentication_BeginAuthSessionViaCredentials_Response extends \ProtobufM
      *
      * @param int $offset Position in list
      *
-     * @return \CAuthentication_AllowedConfirmation
+     * @return CAuthentication_AllowedConfirmation
      */
     public function getAllowedConfirmationsAt($offset)
     {
@@ -321,6 +335,72 @@ class CAuthentication_BeginAuthSessionViaCredentials_Response extends \ProtobufM
     public function hasWeakToken()
     {
         return $this->get(self::WEAK_TOKEN) !== null;
+    }
+
+    /**
+     * Sets value of 'agreement_session_url' property
+     *
+     * @param string $value Property value
+     *
+     * @return null
+     */
+    public function setAgreementSessionUrl($value)
+    {
+        return $this->set(self::AGREEMENT_SESSION_URL, $value);
+    }
+
+    /**
+     * Returns value of 'agreement_session_url' property
+     *
+     * @return string
+     */
+    public function getAgreementSessionUrl()
+    {
+        $value = $this->get(self::AGREEMENT_SESSION_URL);
+        return $value === null ? (string)$value : $value;
+    }
+
+    /**
+     * Returns true if 'agreement_session_url' property is set, false otherwise
+     *
+     * @return boolean
+     */
+    public function hasAgreementSessionUrl()
+    {
+        return $this->get(self::AGREEMENT_SESSION_URL) !== null;
+    }
+
+    /**
+     * Sets value of 'extended_error_message' property
+     *
+     * @param string $value Property value
+     *
+     * @return null
+     */
+    public function setExtendedErrorMessage($value)
+    {
+        return $this->set(self::EXTENDED_ERROR_MESSAGE, $value);
+    }
+
+    /**
+     * Returns value of 'extended_error_message' property
+     *
+     * @return string
+     */
+    public function getExtendedErrorMessage()
+    {
+        $value = $this->get(self::EXTENDED_ERROR_MESSAGE);
+        return $value === null ? (string)$value : $value;
+    }
+
+    /**
+     * Returns true if 'extended_error_message' property is set, false otherwise
+     *
+     * @return boolean
+     */
+    public function hasExtendedErrorMessage()
+    {
+        return $this->get(self::EXTENDED_ERROR_MESSAGE) !== null;
     }
 }
 }

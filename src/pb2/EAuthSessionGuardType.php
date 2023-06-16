@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto generated from steammessages_auth.steamclient.proto at 2022-12-01 11:15:30
+ * Auto generated from steammessages_auth.steamclient.proto at 2023-06-15 07:28:36
  */
 
 namespace SteamAuth\pb2 {
@@ -16,6 +16,7 @@ final class EAuthSessionGuardType
     const k_EAuthSessionGuardType_DeviceConfirmation = 4;
     const k_EAuthSessionGuardType_EmailConfirmation = 5;
     const k_EAuthSessionGuardType_MachineToken = 6;
+    const k_EAuthSessionGuardType_LegacyMachineAuth = 7;
 
     /**
      * Returns defined enum values
@@ -32,6 +33,7 @@ final class EAuthSessionGuardType
             'k_EAuthSessionGuardType_DeviceConfirmation' => self::k_EAuthSessionGuardType_DeviceConfirmation,
             'k_EAuthSessionGuardType_EmailConfirmation' => self::k_EAuthSessionGuardType_EmailConfirmation,
             'k_EAuthSessionGuardType_MachineToken' => self::k_EAuthSessionGuardType_MachineToken,
+            'k_EAuthSessionGuardType_LegacyMachineAuth' => self::k_EAuthSessionGuardType_LegacyMachineAuth,
         );
     }
 }

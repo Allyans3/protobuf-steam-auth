@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto generated from steammessages_auth.steamclient.proto at 2022-12-01 11:15:30
+ * Auto generated from steammessages_auth.steamclient.proto at 2023-06-15 07:28:36
  */
 
 namespace SteamAuth\pb2 {
@@ -14,6 +14,8 @@ class CAuthentication_DeviceDetails extends \ProtobufMessage
     const PLATFORM_TYPE = 2;
     const OS_TYPE = 3;
     const GAMING_DEVICE_TYPE = 4;
+    const CLIENT_COUNT = 5;
+    const MACHINE_ID = 6;
 
     /* @var array Field descriptors */
     protected static $fields = array(
@@ -38,6 +40,16 @@ class CAuthentication_DeviceDetails extends \ProtobufMessage
             'required' => false,
             'type' => \ProtobufMessage::PB_TYPE_INT,
         ),
+        self::CLIENT_COUNT => array(
+            'name' => 'client_count',
+            'required' => false,
+            'type' => \ProtobufMessage::PB_TYPE_INT,
+        ),
+        self::MACHINE_ID => array(
+            'name' => 'machine_id',
+            'required' => false,
+            'type' => \ProtobufMessage::PB_TYPE_STRING,
+        ),
     );
 
     /**
@@ -59,6 +71,8 @@ class CAuthentication_DeviceDetails extends \ProtobufMessage
         $this->values[self::PLATFORM_TYPE] = self::$fields[self::PLATFORM_TYPE]['default'];
         $this->values[self::OS_TYPE] = null;
         $this->values[self::GAMING_DEVICE_TYPE] = null;
+        $this->values[self::CLIENT_COUNT] = null;
+        $this->values[self::MACHINE_ID] = null;
     }
 
     /**
@@ -201,6 +215,72 @@ class CAuthentication_DeviceDetails extends \ProtobufMessage
     public function hasGamingDeviceType()
     {
         return $this->get(self::GAMING_DEVICE_TYPE) !== null;
+    }
+
+    /**
+     * Sets value of 'client_count' property
+     *
+     * @param integer $value Property value
+     *
+     * @return null
+     */
+    public function setClientCount($value)
+    {
+        return $this->set(self::CLIENT_COUNT, $value);
+    }
+
+    /**
+     * Returns value of 'client_count' property
+     *
+     * @return integer
+     */
+    public function getClientCount()
+    {
+        $value = $this->get(self::CLIENT_COUNT);
+        return $value === null ? (integer)$value : $value;
+    }
+
+    /**
+     * Returns true if 'client_count' property is set, false otherwise
+     *
+     * @return boolean
+     */
+    public function hasClientCount()
+    {
+        return $this->get(self::CLIENT_COUNT) !== null;
+    }
+
+    /**
+     * Sets value of 'machine_id' property
+     *
+     * @param string $value Property value
+     *
+     * @return null
+     */
+    public function setMachineId($value)
+    {
+        return $this->set(self::MACHINE_ID, $value);
+    }
+
+    /**
+     * Returns value of 'machine_id' property
+     *
+     * @return string
+     */
+    public function getMachineId()
+    {
+        $value = $this->get(self::MACHINE_ID);
+        return $value === null ? (string)$value : $value;
+    }
+
+    /**
+     * Returns true if 'machine_id' property is set, false otherwise
+     *
+     * @return boolean
+     */
+    public function hasMachineId()
+    {
+        return $this->get(self::MACHINE_ID) !== null;
     }
 }
 }

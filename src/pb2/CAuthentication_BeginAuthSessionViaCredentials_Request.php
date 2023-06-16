@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto generated from steammessages_auth.steamclient.proto at 2022-12-01 11:15:30
+ * Auto generated from steammessages_auth.steamclient.proto at 2023-06-15 07:28:36
  */
 
 namespace SteamAuth\pb2 {
@@ -20,6 +20,8 @@ class CAuthentication_BeginAuthSessionViaCredentials_Request extends \ProtobufMe
     const WEBSITE_ID = 8;
     const DEVICE_DETAILS = 9;
     const GUARD_DATA = 10;
+    const LANGUAGE = 11;
+    const QOS_LEVEL = 12;
 
     /* @var array Field descriptors */
     protected static $fields = array(
@@ -76,6 +78,17 @@ class CAuthentication_BeginAuthSessionViaCredentials_Request extends \ProtobufMe
             'required' => false,
             'type' => \ProtobufMessage::PB_TYPE_STRING,
         ),
+        self::LANGUAGE => array(
+            'name' => 'language',
+            'required' => false,
+            'type' => \ProtobufMessage::PB_TYPE_INT,
+        ),
+        self::QOS_LEVEL => array(
+            'default' => 2,
+            'name' => 'qos_level',
+            'required' => false,
+            'type' => \ProtobufMessage::PB_TYPE_INT,
+        ),
     );
 
     /**
@@ -103,6 +116,8 @@ class CAuthentication_BeginAuthSessionViaCredentials_Request extends \ProtobufMe
         $this->values[self::WEBSITE_ID] = self::$fields[self::WEBSITE_ID]['default'];
         $this->values[self::DEVICE_DETAILS] = null;
         $this->values[self::GUARD_DATA] = null;
+        $this->values[self::LANGUAGE] = null;
+        $this->values[self::QOS_LEVEL] = self::$fields[self::QOS_LEVEL]['default'];
     }
 
     /**
@@ -382,11 +397,11 @@ class CAuthentication_BeginAuthSessionViaCredentials_Request extends \ProtobufMe
     /**
      * Sets value of 'device_details' property
      *
-     * @param \CAuthentication_DeviceDetails $value Property value
+     * @param CAuthentication_DeviceDetails $value Property value
      *
      * @return null
      */
-    public function setDeviceDetails(\CAuthentication_DeviceDetails $value=null)
+    public function setDeviceDetails(CAuthentication_DeviceDetails $value=null)
     {
         return $this->set(self::DEVICE_DETAILS, $value);
     }
@@ -394,7 +409,7 @@ class CAuthentication_BeginAuthSessionViaCredentials_Request extends \ProtobufMe
     /**
      * Returns value of 'device_details' property
      *
-     * @return \CAuthentication_DeviceDetails
+     * @return CAuthentication_DeviceDetails
      */
     public function getDeviceDetails()
     {
@@ -442,6 +457,72 @@ class CAuthentication_BeginAuthSessionViaCredentials_Request extends \ProtobufMe
     public function hasGuardData()
     {
         return $this->get(self::GUARD_DATA) !== null;
+    }
+
+    /**
+     * Sets value of 'language' property
+     *
+     * @param integer $value Property value
+     *
+     * @return null
+     */
+    public function setLanguage($value)
+    {
+        return $this->set(self::LANGUAGE, $value);
+    }
+
+    /**
+     * Returns value of 'language' property
+     *
+     * @return integer
+     */
+    public function getLanguage()
+    {
+        $value = $this->get(self::LANGUAGE);
+        return $value === null ? (integer)$value : $value;
+    }
+
+    /**
+     * Returns true if 'language' property is set, false otherwise
+     *
+     * @return boolean
+     */
+    public function hasLanguage()
+    {
+        return $this->get(self::LANGUAGE) !== null;
+    }
+
+    /**
+     * Sets value of 'qos_level' property
+     *
+     * @param integer $value Property value
+     *
+     * @return null
+     */
+    public function setQosLevel($value)
+    {
+        return $this->set(self::QOS_LEVEL, $value);
+    }
+
+    /**
+     * Returns value of 'qos_level' property
+     *
+     * @return integer
+     */
+    public function getQosLevel()
+    {
+        $value = $this->get(self::QOS_LEVEL);
+        return $value === null ? (integer)$value : $value;
+    }
+
+    /**
+     * Returns true if 'qos_level' property is set, false otherwise
+     *
+     * @return boolean
+     */
+    public function hasQosLevel()
+    {
+        return $this->get(self::QOS_LEVEL) !== null;
     }
 }
 }

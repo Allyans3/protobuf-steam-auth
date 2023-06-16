@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto generated from steammessages_auth.steamclient.proto at 2022-12-01 11:15:30
+ * Auto generated from steammessages_auth.steamclient.proto at 2023-06-15 07:28:36
  */
 
 namespace SteamAuth\pb2 {

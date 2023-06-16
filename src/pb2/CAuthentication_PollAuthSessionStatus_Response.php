@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto generated from steammessages_auth.steamclient.proto at 2022-12-01 11:15:30
+ * Auto generated from steammessages_auth.steamclient.proto at 2023-06-15 07:28:36
  */
 
 namespace SteamAuth\pb2 {
@@ -17,6 +17,7 @@ class CAuthentication_PollAuthSessionStatus_Response extends \ProtobufMessage
     const HAD_REMOTE_INTERACTION = 5;
     const ACCOUNT_NAME = 6;
     const NEW_GUARD_DATA = 7;
+    const AGREEMENT_SESSION_URL = 8;
 
     /* @var array Field descriptors */
     protected static $fields = array(
@@ -55,6 +56,11 @@ class CAuthentication_PollAuthSessionStatus_Response extends \ProtobufMessage
             'required' => false,
             'type' => \ProtobufMessage::PB_TYPE_STRING,
         ),
+        self::AGREEMENT_SESSION_URL => array(
+            'name' => 'agreement_session_url',
+            'required' => false,
+            'type' => \ProtobufMessage::PB_TYPE_STRING,
+        ),
     );
 
     /**
@@ -79,6 +85,7 @@ class CAuthentication_PollAuthSessionStatus_Response extends \ProtobufMessage
         $this->values[self::HAD_REMOTE_INTERACTION] = null;
         $this->values[self::ACCOUNT_NAME] = null;
         $this->values[self::NEW_GUARD_DATA] = null;
+        $this->values[self::AGREEMENT_SESSION_URL] = null;
     }
 
     /**
@@ -320,6 +327,39 @@ class CAuthentication_PollAuthSessionStatus_Response extends \ProtobufMessage
     public function hasNewGuardData()
     {
         return $this->get(self::NEW_GUARD_DATA) !== null;
+    }
+
+    /**
+     * Sets value of 'agreement_session_url' property
+     *
+     * @param string $value Property value
+     *
+     * @return null
+     */
+    public function setAgreementSessionUrl($value)
+    {
+        return $this->set(self::AGREEMENT_SESSION_URL, $value);
+    }
+
+    /**
+     * Returns value of 'agreement_session_url' property
+     *
+     * @return string
+     */
+    public function getAgreementSessionUrl()
+    {
+        $value = $this->get(self::AGREEMENT_SESSION_URL);
+        return $value === null ? (string)$value : $value;
+    }
+
+    /**
+     * Returns true if 'agreement_session_url' property is set, false otherwise
+     *
+     * @return boolean
+     */
+    public function hasAgreementSessionUrl()
+    {
+        return $this->get(self::AGREEMENT_SESSION_URL) !== null;
     }
 }
 }
