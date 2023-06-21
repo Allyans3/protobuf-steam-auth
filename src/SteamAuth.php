@@ -151,7 +151,11 @@ class SteamAuth
         $this->login = $session->getAccountName();
         $this->accessToken = $session->getAccessToken();
         $this->refreshToken = $session->getRefreshToken();
-        $this->clientId = $session->getNewClientId();
+
+        if ($session->getNewClientId())
+            $this->clientId = $session->getNewClientId();
+        else
+            $this->clientId = $authSession->getClientId();
 
         return true;
     }
@@ -188,18 +192,21 @@ class SteamAuth
         $tokens = self::finalizeLogin($session->getRefreshToken(), self::getCookiesByHost()['sessionid']);
 
         foreach ($tokens['transfer_info'] as $token) {
-            self::setToken($token['url'], $token['params']['nonce'], $token['params']['auth'], $authSession->getSteamid());
+            if (str_contains($token['url'], self::MAIN_HOST))
+                self::setToken($token['url'], $token['params']['nonce'], $token['params']['auth'], $authSession->getSteamid());
         }
 
-        foreach (self::DOMAINS as $domain) {
-            self::getAdditionalCookies($domain);
-        }
+        self::getAdditionalCookies('https://steamcommunity.com');
 
         $this->steamID = $authSession->getSteamid();
         $this->login = $session->getAccountName();
         $this->accessToken = $session->getAccessToken();
         $this->refreshToken = $session->getRefreshToken();
-        $this->clientId = $session->getNewClientId();
+
+        if ($session->getNewClientId())
+            $this->clientId = $session->getNewClientId();
+        else
+            $this->clientId = $authSession->getClientId();
 
         return true;
     }
