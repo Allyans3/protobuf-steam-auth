@@ -36,6 +36,11 @@ class SteamAuth
     private $cookieStorage = [];
     private $cookieFile = '';
 
+    private $steamID = -1;
+    private $accessToken = null;
+    private $refreshToken = null;
+    private $clientId = -1;
+
     const HEADERS = [
         'Origin' => "https://steamcommunity.com",
         'Referer' => "https://steamcommunity.com/"
@@ -71,7 +76,7 @@ class SteamAuth
      * @throws SteamResponseException
      * @throws SteamErrorException
      */
-    public function login(): bool
+    public function login(string $code = null): bool
     {
         if (self::isAuthorized())
             return true;
@@ -85,7 +90,7 @@ class SteamAuth
 
         if ($authSession->getAllowedConfirmations()) {
             if (self::isTwoFactorRequired($authSession->getAllowedConfirmations()[0])) {
-                $twoFactorCode = SteamTotp::getAuthCode($this->sharedSecret);
+                $twoFactorCode = $code ?? SteamTotp::getAuthCode($this->sharedSecret);
 
                 self::updateAuthSession($authSession->getClientId(), $authSession->getSteamid(), $twoFactorCode,
                                         EAuthSessionGuardType::k_EAuthSessionGuardType_DeviceCode);
@@ -103,6 +108,12 @@ class SteamAuth
         foreach (self::DOMAINS as $domain) {
             self::getAdditionalCookies($domain);
         }
+
+        $this->steamID = $authSession->getSteamid();
+        $this->login = $session->getAccountName();
+        $this->accessToken = $session->getAccessToken();
+        $this->refreshToken = $session->getRefreshToken();
+        $this->clientId = $session->getNewClientId();
 
         return true;
     }
@@ -402,6 +413,47 @@ class SteamAuth
         self::updateCookieStorage($curl->responseCookies, self::getHostFromUrl($url));
     }
 
+    public function getSteamID()
+    {
+        return $this->steamID;
+    }
+
+    public function getAccountName()
+    {
+        return $this->login;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getSharedSecret(): mixed
+    {
+        return $this->sharedSecret;
+    }
+
+    /**
+     * @return null
+     */
+    public function getAccessToken()
+    {
+        return $this->accessToken;
+    }
+
+    /**
+     * @return null
+     */
+    public function getRefreshToken()
+    {
+        return $this->refreshToken;
+    }
+
+    /**
+     * @return int
+     */
+    public function getClientId(): int
+    {
+        return $this->clientId;
+    }
 
     /**
      * @param string $url
