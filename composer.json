@@ -13,7 +13,7 @@
         "php-curl-class/php-curl-class": ">=8.10.0",
         "allegro/php-protobuf": "^0.12.4",
         "ramsey/uuid": "^4.2",
-        "tankonyako/php-steam-totp": "dev-master"
+        "allyans3/php-steam-totp": "^1.0"
     },
     "autoload": {
         "psr-4": {
