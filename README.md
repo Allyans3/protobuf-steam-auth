@@ -50,7 +50,10 @@ require "vendor/autoload.php";
 
 $auth = new SteamAuth('login', 'password', 'shared_secret');
 
+// For WebBrowser
 $auth->login();
+// or for MobileApp
+$auth->loginMobile();
 
 // You can check if you are authorized
 $auth->isAuthorized();
@@ -59,6 +62,9 @@ $auth->isAuthorized();
 $auth->getCookies();
 // or by host
 $auth->getCookiesByHost();
+
+// Getting data for platform type
+$auth->getDataForPlatformType(1) // 1 => Steam Client, 2 => Web Browser, 3 => Mobile App
 
 ```
 
@@ -96,7 +102,10 @@ $cookieOptions = [
             "sessionid"         => "*******",
             "steamCountry"      => "*******",
             "steamLoginSecure"  => "*******"
-        ]
+        ],
+        "checkout.steampowered.com" => [
+            "steamLoginSecure"  => "*******"
+        ]       
     ]   
 ];
 
