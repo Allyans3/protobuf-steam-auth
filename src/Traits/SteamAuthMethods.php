@@ -234,20 +234,20 @@ trait SteamAuthMethods
 
     /**
      * @param $refreshToken
-     * @param $steamId
      * @return CAuthentication_AccessToken_GenerateForApp_Response
      * @throws SteamErrorException
      * @throws SteamResponseException
      */
-    public function updateAccessToken($refreshToken, $steamId): CAuthentication_AccessToken_GenerateForApp_Response
+    public function updateAccessToken($refreshToken): CAuthentication_AccessToken_GenerateForApp_Response
     {
         $curl = new Curl();
+
+        $steamId = self::decodeJWT($refreshToken)['sub'];
 
         $message = new CAuthentication_AccessToken_GenerateForApp_Request();
 
         $message->setRefreshToken($refreshToken);
         $message->setSteamid($steamId);
-        $message->setRenewalType($steamId);
 
         $curl->post('https://api.steampowered.com/IAuthenticationService/GenerateAccessTokenForApp/v1',
             [
