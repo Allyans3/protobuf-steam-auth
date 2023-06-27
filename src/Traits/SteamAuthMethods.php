@@ -5,6 +5,8 @@ namespace SteamAuth\Traits;
 use Curl\Curl;
 use SteamAuth\Exceptions\SteamErrorException;
 use SteamAuth\Exceptions\SteamResponseException;
+use SteamAuth\pb2\CAuthentication_AccessToken_GenerateForApp_Request;
+use SteamAuth\pb2\CAuthentication_AccessToken_GenerateForApp_Response;
 use SteamAuth\pb2\CAuthentication_BeginAuthSessionViaCredentials_Request;
 use SteamAuth\pb2\CAuthentication_BeginAuthSessionViaCredentials_Response;
 use SteamAuth\pb2\CAuthentication_DeviceDetails;
@@ -24,7 +26,7 @@ trait SteamAuthMethods
      * @throws SteamResponseException
      * @throws SteamErrorException
      */
-    private function getRSAKey(): CAuthentication_GetPasswordRSAPublicKey_Response
+    public function getRSAKey(): CAuthentication_GetPasswordRSAPublicKey_Response
     {
         $curl = new Curl();;
 
@@ -58,7 +60,7 @@ trait SteamAuthMethods
      * @throws SteamErrorException
      * @throws SteamResponseException
      */
-    private function beginAuthSession($encryptedPassword, $rsaTimestamp, $platformType): CAuthentication_BeginAuthSessionViaCredentials_Response
+    public function beginAuthSession($encryptedPassword, $rsaTimestamp, $platformType): CAuthentication_BeginAuthSessionViaCredentials_Response
     {
         $curl = new Curl();
 
@@ -111,7 +113,7 @@ trait SteamAuthMethods
      * @throws SteamResponseException
      * @throws SteamErrorException
      */
-    private function updateAuthSession($clientId, $steamId, $twoFactoryCode, $codeType)
+    public function updateAuthSession($clientId, $steamId, $twoFactoryCode, $codeType)
     {
         $curl = new Curl();
 
@@ -141,7 +143,7 @@ trait SteamAuthMethods
      * @throws SteamResponseException
      * @throws SteamErrorException
      */
-    private function pollAuthSessionStatus($clientId, $requestId): CAuthentication_PollAuthSessionStatus_Response
+    public function pollAuthSessionStatus($clientId, $requestId): CAuthentication_PollAuthSessionStatus_Response
     {
         $curl = new Curl();
 
@@ -175,7 +177,7 @@ trait SteamAuthMethods
      * @throws SteamResponseException
      * @throws SteamErrorException
      */
-    private function finalizeLogin($refreshToken, $sessionId): array
+    public function finalizeLogin($refreshToken, $sessionId): array
     {
         $curl = new Curl();
         $curl->setDefaultJsonDecoder($assoc = true);
@@ -199,13 +201,13 @@ trait SteamAuthMethods
     }
 
     /**
-     * @param string $url
-     * @param string $nonce
+     * @param $url
+     * @param $nonce
      * @param $auth
      * @param $steamId
      * @throws SteamResponseException
      */
-    private function setToken(string $url, string $nonce, $auth, $steamId)
+    public function setToken($url, $nonce, $auth, $steamId)
     {
         $curl = new Curl();
         $curl->setDefaultJsonDecoder($assoc = true);
@@ -228,5 +230,40 @@ trait SteamAuthMethods
             throw new SteamResponseException($curl->errorMessage);
 
         self::updateCookieStorage($curl->responseCookies, self::getHostFromUrl($url));
+    }
+
+    /**
+     * @param $refreshToken
+     * @param $steamId
+     * @return CAuthentication_AccessToken_GenerateForApp_Response
+     * @throws SteamErrorException
+     * @throws SteamResponseException
+     */
+    public function updateAccessToken($refreshToken, $steamId): CAuthentication_AccessToken_GenerateForApp_Response
+    {
+        $curl = new Curl();
+
+        $message = new CAuthentication_AccessToken_GenerateForApp_Request();
+
+        $message->setRefreshToken($refreshToken);
+        $message->setSteamid($steamId);
+        $message->setRenewalType($steamId);
+
+        $curl->post('https://api.steampowered.com/IAuthenticationService/GenerateAccessTokenForApp/v1',
+            [
+                'input_protobuf_encoded' => base64_encode($message->serializeToString())
+            ]
+        );
+
+        $accessTokenResponse = new CAuthentication_AccessToken_GenerateForApp_Response();
+
+        if (!$curl->error)
+            $accessTokenResponse->parseFromString($curl->response);
+        else
+            throw new SteamResponseException($curl->errorMessage);
+
+        self::checkSteamError($curl->responseHeaders['x-eresult']);
+
+        return $accessTokenResponse;
     }
 }

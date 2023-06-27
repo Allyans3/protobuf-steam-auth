@@ -40,7 +40,7 @@ trait UsefulMethods
                 return [
                     'website_id' => 'Client',
                     'headers' => [
-                        'user-agent' => $steamClientUserAgent,
+                        'user_agent' => $steamClientUserAgent,
                         'origin' => 'https://steamloopback.host',
                         'referer' => 'https://steamloopback.host/index.html?' . http_build_query($refererQuery)
                     ],
@@ -56,7 +56,7 @@ trait UsefulMethods
                 return [
                     'website_id' => 'Community',
                     'headers' => [
-                        'user-agent' => $chromeUserAgent,
+                        'user_agent' => $chromeUserAgent,
                         'origin' => 'https://steamcommunity.com',
                         'referer' => 'https://steamcommunity.com',
                     ],
@@ -70,7 +70,7 @@ trait UsefulMethods
                 return [
                     'website_id' => 'Mobile',
                     'headers' => [
-                        'user-agent' => $mobileUserAgent,
+                        'user_agent' => $mobileUserAgent,
                         'cookie' => [
                             'steamLoginSecure' => '',
                             'sessionid' => '',
@@ -107,6 +107,18 @@ trait UsefulMethods
         }
 
         return $output;
+    }
+
+    /**
+     * @param $token
+     * @return array|mixed
+     */
+    public function decodeJWT($token)
+    {
+        if (!preg_match('/^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)/', $token))
+            return false;
+
+        return json_decode(base64_decode(str_replace('_', '/', str_replace('-','+',explode('.', $token)[1]))), true);
     }
 
 
