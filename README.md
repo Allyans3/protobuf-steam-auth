@@ -67,10 +67,10 @@ $auth->getCookiesByHost();
 $auth->getDataForPlatformType(1) // 1 => Steam Client, 2 => Web Browser, 3 => Mobile App
 
 // Updating `access_token` with `refresh_token`
-$auth->updateAccessToken(`$refreshToken`)
+$auth->updateAccessToken($refreshToken)
 
 // Decoding JWT
-$auth->decodeJWT(`$token`)
+$auth->decodeJWT($token)
 
 ```
 
