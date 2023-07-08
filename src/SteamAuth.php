@@ -13,6 +13,7 @@ use SteamAuth\pb2\EAuthTokenPlatformType;
 use SteamAuth\RSA\Crypt\Crypt_RSA;
 use SteamAuth\RSA\Math\MathBigInteger;
 use SteamAuth\Exceptions\SteamResponseException;
+use SteamAuth\Traits\AuthenticatorLinkerMethods;
 use SteamAuth\Traits\CookieMethods;
 use SteamAuth\Traits\SteamAuthMethods;
 use SteamAuth\Traits\UsefulMethods;
@@ -20,7 +21,7 @@ use SteamTotp\SteamTotp;
 
 class SteamAuth
 {
-    use CookieMethods, UsefulMethods, SteamAuthMethods;
+    use AuthenticatorLinkerMethods, CookieMethods, UsefulMethods, SteamAuthMethods;
 
     private $login;
     private $password;
