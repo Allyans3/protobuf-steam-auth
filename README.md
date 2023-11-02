@@ -32,12 +32,17 @@ cp -a /vendor/allyans3/protobuf-steam-auth/protobuf-ext .
 ```
 cd protobuf-ext/php7 // For PHP 7
 cd protobuf-ext/php8 // For PHP 8
+```
 
+For Linux/Mac:
+```
 phpize
 ./configure
 make
 make install
 ```
+
+For Windows see this [Youtube video](https://youtube.com/watch?v=wVnfw5exxGI&ab_channel=Dave):
 
 4. Add line `extension=protobuf.so` to your php.ini file
 
