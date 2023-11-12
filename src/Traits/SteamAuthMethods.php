@@ -28,7 +28,27 @@ trait SteamAuthMethods
      */
     public function getRSAKey(): CAuthentication_GetPasswordRSAPublicKey_Response
     {
-        $curl = new Curl();;
+        $curl = new Curl();
+        $curl->setConnectTimeout(30);
+        $curl->setTimeout(60);
+
+        if ($this->proxy) {
+            if (array_key_exists('domain_name', $this->proxy))
+                $curl->setProxy($this->proxy['domain_name']);
+            else if (array_key_exists('user', $this->proxy) && array_key_exists('pass', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port'], $this->proxy['user'], $this->proxy['pass']);
+            else if (array_key_exists('ip', $this->proxy) && array_key_exists('port', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port']);
+
+            if (array_key_exists('type', $this->proxy))
+                $curl->setProxyType($this->proxy['type']);
+            if (array_key_exists('timeout', $this->proxy))
+                $curl->setTimeout($this->proxy['timeout']);
+            if (array_key_exists('connect_timeout', $this->proxy))
+                $curl->setConnectTimeout($this->proxy['connect_timeout']);
+            if (array_key_exists('user_agent', $this->proxy))
+                $curl->setUserAgent($this->proxy['user_agent']);
+        }
 
         $message = new CAuthentication_GetPasswordRSAPublicKey_Request();
         $message->setAccountName($this->login);
@@ -63,6 +83,26 @@ trait SteamAuthMethods
     public function beginAuthSession($encryptedPassword, $rsaTimestamp, $platformType): CAuthentication_BeginAuthSessionViaCredentials_Response
     {
         $curl = new Curl();
+        $curl->setConnectTimeout(30);
+        $curl->setTimeout(60);
+
+        if ($this->proxy) {
+            if (array_key_exists('domain_name', $this->proxy))
+                $curl->setProxy($this->proxy['domain_name']);
+            else if (array_key_exists('user', $this->proxy) && array_key_exists('pass', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port'], $this->proxy['user'], $this->proxy['pass']);
+            else if (array_key_exists('ip', $this->proxy) && array_key_exists('port', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port']);
+
+            if (array_key_exists('type', $this->proxy))
+                $curl->setProxyType($this->proxy['type']);
+            if (array_key_exists('timeout', $this->proxy))
+                $curl->setTimeout($this->proxy['timeout']);
+            if (array_key_exists('connect_timeout', $this->proxy))
+                $curl->setConnectTimeout($this->proxy['connect_timeout']);
+            if (array_key_exists('user_agent', $this->proxy))
+                $curl->setUserAgent($this->proxy['user_agent']);
+        }
 
         $message = new CAuthentication_BeginAuthSessionViaCredentials_Request();
 
@@ -116,6 +156,26 @@ trait SteamAuthMethods
     public function updateAuthSession($clientId, $steamId, $twoFactoryCode, $codeType)
     {
         $curl = new Curl();
+        $curl->setConnectTimeout(30);
+        $curl->setTimeout(60);
+
+        if ($this->proxy) {
+            if (array_key_exists('domain_name', $this->proxy))
+                $curl->setProxy($this->proxy['domain_name']);
+            else if (array_key_exists('user', $this->proxy) && array_key_exists('pass', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port'], $this->proxy['user'], $this->proxy['pass']);
+            else if (array_key_exists('ip', $this->proxy) && array_key_exists('port', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port']);
+
+            if (array_key_exists('type', $this->proxy))
+                $curl->setProxyType($this->proxy['type']);
+            if (array_key_exists('timeout', $this->proxy))
+                $curl->setTimeout($this->proxy['timeout']);
+            if (array_key_exists('connect_timeout', $this->proxy))
+                $curl->setConnectTimeout($this->proxy['connect_timeout']);
+            if (array_key_exists('user_agent', $this->proxy))
+                $curl->setUserAgent($this->proxy['user_agent']);
+        }
 
         $message = new CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request();
 
@@ -146,6 +206,26 @@ trait SteamAuthMethods
     public function pollAuthSessionStatus($clientId, $requestId): CAuthentication_PollAuthSessionStatus_Response
     {
         $curl = new Curl();
+        $curl->setConnectTimeout(30);
+        $curl->setTimeout(60);
+
+        if ($this->proxy) {
+            if (array_key_exists('domain_name', $this->proxy))
+                $curl->setProxy($this->proxy['domain_name']);
+            else if (array_key_exists('user', $this->proxy) && array_key_exists('pass', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port'], $this->proxy['user'], $this->proxy['pass']);
+            else if (array_key_exists('ip', $this->proxy) && array_key_exists('port', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port']);
+
+            if (array_key_exists('type', $this->proxy))
+                $curl->setProxyType($this->proxy['type']);
+            if (array_key_exists('timeout', $this->proxy))
+                $curl->setTimeout($this->proxy['timeout']);
+            if (array_key_exists('connect_timeout', $this->proxy))
+                $curl->setConnectTimeout($this->proxy['connect_timeout']);
+            if (array_key_exists('user_agent', $this->proxy))
+                $curl->setUserAgent($this->proxy['user_agent']);
+        }
 
         $message = new CAuthentication_PollAuthSessionStatus_Request();
 
@@ -184,6 +264,24 @@ trait SteamAuthMethods
         $curl->setConnectTimeout(30);
         $curl->setTimeout(60);
 
+        if ($this->proxy) {
+            if (array_key_exists('domain_name', $this->proxy))
+                $curl->setProxy($this->proxy['domain_name']);
+            else if (array_key_exists('user', $this->proxy) && array_key_exists('pass', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port'], $this->proxy['user'], $this->proxy['pass']);
+            else if (array_key_exists('ip', $this->proxy) && array_key_exists('port', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port']);
+
+            if (array_key_exists('type', $this->proxy))
+                $curl->setProxyType($this->proxy['type']);
+            if (array_key_exists('timeout', $this->proxy))
+                $curl->setTimeout($this->proxy['timeout']);
+            if (array_key_exists('connect_timeout', $this->proxy))
+                $curl->setConnectTimeout($this->proxy['connect_timeout']);
+            if (array_key_exists('user_agent', $this->proxy))
+                $curl->setUserAgent($this->proxy['user_agent']);
+        }
+
         $curl->post('https://login.steampowered.com/jwt/finalizelogin',
             [
                 'nonce' => $refreshToken,
@@ -214,6 +312,24 @@ trait SteamAuthMethods
         $curl->setConnectTimeout(30);
         $curl->setTimeout(60);
 
+        if ($this->proxy) {
+            if (array_key_exists('domain_name', $this->proxy))
+                $curl->setProxy($this->proxy['domain_name']);
+            else if (array_key_exists('user', $this->proxy) && array_key_exists('pass', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port'], $this->proxy['user'], $this->proxy['pass']);
+            else if (array_key_exists('ip', $this->proxy) && array_key_exists('port', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port']);
+
+            if (array_key_exists('type', $this->proxy))
+                $curl->setProxyType($this->proxy['type']);
+            if (array_key_exists('timeout', $this->proxy))
+                $curl->setTimeout($this->proxy['timeout']);
+            if (array_key_exists('connect_timeout', $this->proxy))
+                $curl->setConnectTimeout($this->proxy['connect_timeout']);
+            if (array_key_exists('user_agent', $this->proxy))
+                $curl->setUserAgent($this->proxy['user_agent']);
+        }
+
         $curl->setCookies(self::getCookiesByHost(self::getHostFromUrl($url)));
         $curl->setCookieFile($this->cookieFile);
         $curl->setCookieJar($this->cookieFile);
@@ -241,6 +357,26 @@ trait SteamAuthMethods
     public function updateAccessToken($refreshToken): CAuthentication_AccessToken_GenerateForApp_Response
     {
         $curl = new Curl();
+        $curl->setConnectTimeout(30);
+        $curl->setTimeout(60);
+
+        if ($this->proxy) {
+            if (array_key_exists('domain_name', $this->proxy))
+                $curl->setProxy($this->proxy['domain_name']);
+            else if (array_key_exists('user', $this->proxy) && array_key_exists('pass', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port'], $this->proxy['user'], $this->proxy['pass']);
+            else if (array_key_exists('ip', $this->proxy) && array_key_exists('port', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port']);
+
+            if (array_key_exists('type', $this->proxy))
+                $curl->setProxyType($this->proxy['type']);
+            if (array_key_exists('timeout', $this->proxy))
+                $curl->setTimeout($this->proxy['timeout']);
+            if (array_key_exists('connect_timeout', $this->proxy))
+                $curl->setConnectTimeout($this->proxy['connect_timeout']);
+            if (array_key_exists('user_agent', $this->proxy))
+                $curl->setUserAgent($this->proxy['user_agent']);
+        }
 
         $steamId = self::decodeJWT($refreshToken)['sub'];
 

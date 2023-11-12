@@ -55,6 +55,9 @@ require "vendor/autoload.php";
 
 $auth = new SteamAuth('login', 'password', 'shared_secret');
 
+// For proxy
+$auth->setProxy($proxy);
+
 // For WebBrowser
 $auth->login();
 // or for MobileApp
@@ -140,6 +143,49 @@ try {
 } catch (\SteamAuth\Exceptions\SteamResponseException $e) {
     $e->getMessage();
 }
+```
+
+## Proxy
+**v1.0.9 or later is required to use proxy.**
+
+Keys that can be in an array:
+* `ip` + `port` or `domain_name` – `domain_name` used for rotating proxy
+* `user` + `pass` – if proxy support auth
+* `type` – you can pass constant variable or integer as explained in table below
+* `timeout` – in seconds, default infinite
+* `connect_timeout` – in seconds, default infinite
+* `user_agent` – your Useragent
+
+
+| cURL Proxy Type           | Integer |
+| ------------------------- | :-----: |
+| CURLPROXY_HTTP            | 0       |
+| CURLPROXY_HTTP_1_0        | 1       |
+| CURLPROXY_HTTPS           | 2       |
+| CURLPROXY_SOCKS4          | 4       |
+| CURLPROXY_SOCKS4A         | 6       |
+| CURLPROXY_SOCKS5          | 5       |
+| CURLPROXY_SOCKS5_HOSTNAME | 7       |
+
+Example:
+```php
+use SteamAuth\SteamAuth;
+
+require "vendor/autoload.php";
+
+$proxy = [
+    'ip' => '49.12.181.264',
+    'port' => 8000,
+    'user' => 'user',
+    'pass' => 'pass'
+];
+
+$auth = new SteamAuth('login', 'password', 'shared_secret');
+
+$auth->setProxy($proxy);
+
+$auth->login();
+
 ```
 
 ## Support

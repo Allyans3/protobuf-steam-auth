@@ -27,6 +27,7 @@ class SteamAuth
     private $password;
     private $sharedSecret;
 
+    private $proxy = [];
     private $cookieStorage = [];
     private $cookieFile = '';
 
@@ -107,6 +108,11 @@ class SteamAuth
     {
         $this->cookieStorage = isset($options['cookie_storage']) ? $options['cookie_storage'] : $this->cookieStorage;
         $this->cookieFile = isset($options['cookie_file']) ? $options['cookie_file'] : $this->cookieFile;
+    }
+
+    public function setProxy($proxy)
+    {
+        $this->proxy = $proxy;
     }
 
     /**
@@ -252,6 +258,24 @@ class SteamAuth
         $curl->setConnectTimeout(30);
         $curl->setTimeout(60);
 
+        if ($this->proxy) {
+            if (array_key_exists('domain_name', $this->proxy))
+                $curl->setProxy($this->proxy['domain_name']);
+            else if (array_key_exists('user', $this->proxy) && array_key_exists('pass', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port'], $this->proxy['user'], $this->proxy['pass']);
+            else if (array_key_exists('ip', $this->proxy) && array_key_exists('port', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port']);
+
+            if (array_key_exists('type', $this->proxy))
+                $curl->setProxyType($this->proxy['type']);
+            if (array_key_exists('timeout', $this->proxy))
+                $curl->setTimeout($this->proxy['timeout']);
+            if (array_key_exists('connect_timeout', $this->proxy))
+                $curl->setConnectTimeout($this->proxy['connect_timeout']);
+            if (array_key_exists('user_agent', $this->proxy))
+                $curl->setUserAgent($this->proxy['user_agent']);
+        }
+
         $curl->setCookieJar($this->cookieFile);
 
         $curl->get('https://steamcommunity.com/');
@@ -272,6 +296,24 @@ class SteamAuth
         $curl->setDefaultJsonDecoder($assoc = true);
         $curl->setConnectTimeout(30);
         $curl->setTimeout(60);
+
+        if ($this->proxy) {
+            if (array_key_exists('domain_name', $this->proxy))
+                $curl->setProxy($this->proxy['domain_name']);
+            else if (array_key_exists('user', $this->proxy) && array_key_exists('pass', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port'], $this->proxy['user'], $this->proxy['pass']);
+            else if (array_key_exists('ip', $this->proxy) && array_key_exists('port', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port']);
+
+            if (array_key_exists('type', $this->proxy))
+                $curl->setProxyType($this->proxy['type']);
+            if (array_key_exists('timeout', $this->proxy))
+                $curl->setTimeout($this->proxy['timeout']);
+            if (array_key_exists('connect_timeout', $this->proxy))
+                $curl->setConnectTimeout($this->proxy['connect_timeout']);
+            if (array_key_exists('user_agent', $this->proxy))
+                $curl->setUserAgent($this->proxy['user_agent']);
+        }
 
         $curl->setCookies(self::getCookiesByHost());
         $curl->setCookieFile($this->cookieFile);
@@ -294,6 +336,24 @@ class SteamAuth
         $curl->setDefaultJsonDecoder($assoc = true);
         $curl->setConnectTimeout(30);
         $curl->setTimeout(60);
+
+        if ($this->proxy) {
+            if (array_key_exists('domain_name', $this->proxy))
+                $curl->setProxy($this->proxy['domain_name']);
+            else if (array_key_exists('user', $this->proxy) && array_key_exists('pass', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port'], $this->proxy['user'], $this->proxy['pass']);
+            else if (array_key_exists('ip', $this->proxy) && array_key_exists('port', $this->proxy))
+                $curl->setProxy($this->proxy['ip'], $this->proxy['port']);
+
+            if (array_key_exists('type', $this->proxy))
+                $curl->setProxyType($this->proxy['type']);
+            if (array_key_exists('timeout', $this->proxy))
+                $curl->setTimeout($this->proxy['timeout']);
+            if (array_key_exists('connect_timeout', $this->proxy))
+                $curl->setConnectTimeout($this->proxy['connect_timeout']);
+            if (array_key_exists('user_agent', $this->proxy))
+                $curl->setUserAgent($this->proxy['user_agent']);
+        }
 
         $curl->setCookies(self::getCookiesByHost(self::getHostFromUrl($url)));
         $curl->setCookieFile($this->cookieFile);
