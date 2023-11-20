@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto generated from steammessages_base.proto at 2023-06-15 07:28:36
+ * Auto generated from steammessages_base.proto at 2023-11-20 09:10:04
  */
 
 namespace SteamAuth\pb2 {
@@ -18,6 +18,8 @@ class CPackageReservationStatus extends \ProtobufMessage
     const EXPIRED = 6;
     const TIME_EXPIRES = 7;
     const TIME_RESERVED = 8;
+    const RTIME_ESTIMATED_NOTIFICATION = 9;
+    const NOTIFICATON_TOKEN = 10;
 
     /* @var array Field descriptors */
     protected static $fields = array(
@@ -61,6 +63,16 @@ class CPackageReservationStatus extends \ProtobufMessage
             'required' => false,
             'type' => \ProtobufMessage::PB_TYPE_INT,
         ),
+        self::RTIME_ESTIMATED_NOTIFICATION => array(
+            'name' => 'rtime_estimated_notification',
+            'required' => false,
+            'type' => \ProtobufMessage::PB_TYPE_INT,
+        ),
+        self::NOTIFICATON_TOKEN => array(
+            'name' => 'notificaton_token',
+            'required' => false,
+            'type' => \ProtobufMessage::PB_TYPE_STRING,
+        ),
     );
 
     /**
@@ -86,6 +98,8 @@ class CPackageReservationStatus extends \ProtobufMessage
         $this->values[self::EXPIRED] = null;
         $this->values[self::TIME_EXPIRES] = null;
         $this->values[self::TIME_RESERVED] = null;
+        $this->values[self::RTIME_ESTIMATED_NOTIFICATION] = null;
+        $this->values[self::NOTIFICATON_TOKEN] = null;
     }
 
     /**
@@ -360,6 +374,72 @@ class CPackageReservationStatus extends \ProtobufMessage
     public function hasTimeReserved()
     {
         return $this->get(self::TIME_RESERVED) !== null;
+    }
+
+    /**
+     * Sets value of 'rtime_estimated_notification' property
+     *
+     * @param integer $value Property value
+     *
+     * @return null
+     */
+    public function setRtimeEstimatedNotification($value)
+    {
+        return $this->set(self::RTIME_ESTIMATED_NOTIFICATION, $value);
+    }
+
+    /**
+     * Returns value of 'rtime_estimated_notification' property
+     *
+     * @return integer
+     */
+    public function getRtimeEstimatedNotification()
+    {
+        $value = $this->get(self::RTIME_ESTIMATED_NOTIFICATION);
+        return $value === null ? (integer)$value : $value;
+    }
+
+    /**
+     * Returns true if 'rtime_estimated_notification' property is set, false otherwise
+     *
+     * @return boolean
+     */
+    public function hasRtimeEstimatedNotification()
+    {
+        return $this->get(self::RTIME_ESTIMATED_NOTIFICATION) !== null;
+    }
+
+    /**
+     * Sets value of 'notificaton_token' property
+     *
+     * @param string $value Property value
+     *
+     * @return null
+     */
+    public function setNotificatonToken($value)
+    {
+        return $this->set(self::NOTIFICATON_TOKEN, $value);
+    }
+
+    /**
+     * Returns value of 'notificaton_token' property
+     *
+     * @return string
+     */
+    public function getNotificatonToken()
+    {
+        $value = $this->get(self::NOTIFICATON_TOKEN);
+        return $value === null ? (string)$value : $value;
+    }
+
+    /**
+     * Returns true if 'notificaton_token' property is set, false otherwise
+     *
+     * @return boolean
+     */
+    public function hasNotificatonToken()
+    {
+        return $this->get(self::NOTIFICATON_TOKEN) !== null;
     }
 }
 }

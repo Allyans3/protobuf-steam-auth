@@ -1,23 +1,23 @@
 <?php
 /**
- * Auto generated from service_twofactor.proto at 2023-07-08 08:31:13
+ * Auto generated from service_twofactor.proto at 2023-11-20 10:28:26
  */
 
 namespace SteamAuth\pb2\CTwoFactor {
 /**
- * CTwoFactor_DestroyEmergencyCodes_Request message
+ * CTwoFactor_Time_Request message
  */
-class CTwoFactor_DestroyEmergencyCodes_Request extends \ProtobufMessage
+class CTwoFactor_Time_Request extends \ProtobufMessage
 {
     /* Field index constants */
-    const STEAMID = 1;
+    const SENDER_TIME = 1;
 
     /* @var array Field descriptors */
     protected static $fields = array(
-        self::STEAMID => array(
-            'name' => 'steamid',
+        self::SENDER_TIME => array(
+            'name' => 'sender_time',
             'required' => false,
-            'type' => \ProtobufMessage::PB_TYPE_FIXED64,
+            'type' => \ProtobufMessage::PB_TYPE_INT,
         ),
     );
 
@@ -36,7 +36,7 @@ class CTwoFactor_DestroyEmergencyCodes_Request extends \ProtobufMessage
      */
     public function reset()
     {
-        $this->values[self::STEAMID] = null;
+        $this->values[self::SENDER_TIME] = null;
     }
 
     /**
@@ -50,36 +50,36 @@ class CTwoFactor_DestroyEmergencyCodes_Request extends \ProtobufMessage
     }
 
     /**
-     * Sets value of 'steamid' property
+     * Sets value of 'sender_time' property
      *
      * @param integer $value Property value
      *
      * @return null
      */
-    public function setSteamid($value)
+    public function setSenderTime($value)
     {
-        return $this->set(self::STEAMID, $value);
+        return $this->set(self::SENDER_TIME, $value);
     }
 
     /**
-     * Returns value of 'steamid' property
+     * Returns value of 'sender_time' property
      *
      * @return integer
      */
-    public function getSteamid()
+    public function getSenderTime()
     {
-        $value = $this->get(self::STEAMID);
+        $value = $this->get(self::SENDER_TIME);
         return $value === null ? (integer)$value : $value;
     }
 
     /**
-     * Returns true if 'steamid' property is set, false otherwise
+     * Returns true if 'sender_time' property is set, false otherwise
      *
      * @return boolean
      */
-    public function hasSteamid()
+    public function hasSenderTime()
     {
-        return $this->get(self::STEAMID) !== null;
+        return $this->get(self::SENDER_TIME) !== null;
     }
 }
 }

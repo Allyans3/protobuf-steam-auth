@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto generated from service_twofactor.proto at 2023-07-08 08:31:13
+ * Auto generated from service_twofactor.proto at 2023-11-20 10:28:26
  */
 
 namespace SteamAuth\pb2\CTwoFactor {

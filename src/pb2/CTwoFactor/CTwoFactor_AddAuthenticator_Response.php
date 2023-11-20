@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto generated from service_twofactor.proto at 2023-07-08 08:31:13
+ * Auto generated from service_twofactor.proto at 2023-11-20 10:28:26
  */
 
 namespace SteamAuth\pb2\CTwoFactor {
@@ -21,6 +21,7 @@ class CTwoFactor_AddAuthenticator_Response extends \ProtobufMessage
     const SECRET_1 = 9;
     const STATUS = 10;
     const PHONE_NUMBER_HINT = 11;
+    const CONFIRM_TYPE = 12;
 
     /* @var array Field descriptors */
     protected static $fields = array(
@@ -79,6 +80,11 @@ class CTwoFactor_AddAuthenticator_Response extends \ProtobufMessage
             'required' => false,
             'type' => \ProtobufMessage::PB_TYPE_STRING,
         ),
+        self::CONFIRM_TYPE => array(
+            'name' => 'confirm_type',
+            'required' => false,
+            'type' => \ProtobufMessage::PB_TYPE_INT,
+        ),
     );
 
     /**
@@ -107,6 +113,7 @@ class CTwoFactor_AddAuthenticator_Response extends \ProtobufMessage
         $this->values[self::SECRET_1] = null;
         $this->values[self::STATUS] = null;
         $this->values[self::PHONE_NUMBER_HINT] = null;
+        $this->values[self::CONFIRM_TYPE] = null;
     }
 
     /**
@@ -480,6 +487,39 @@ class CTwoFactor_AddAuthenticator_Response extends \ProtobufMessage
     public function hasPhoneNumberHint()
     {
         return $this->get(self::PHONE_NUMBER_HINT) !== null;
+    }
+
+    /**
+     * Sets value of 'confirm_type' property
+     *
+     * @param integer $value Property value
+     *
+     * @return null
+     */
+    public function setConfirmType($value)
+    {
+        return $this->set(self::CONFIRM_TYPE, $value);
+    }
+
+    /**
+     * Returns value of 'confirm_type' property
+     *
+     * @return integer
+     */
+    public function getConfirmType()
+    {
+        $value = $this->get(self::CONFIRM_TYPE);
+        return $value === null ? (integer)$value : $value;
+    }
+
+    /**
+     * Returns true if 'confirm_type' property is set, false otherwise
+     *
+     * @return boolean
+     */
+    public function hasConfirmType()
+    {
+        return $this->get(self::CONFIRM_TYPE) !== null;
     }
 }
 }

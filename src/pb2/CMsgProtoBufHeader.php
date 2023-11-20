@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto generated from steammessages_base.proto at 2023-06-15 07:28:36
+ * Auto generated from steammessages_base.proto at 2023-11-20 09:10:04
  */
 
 namespace SteamAuth\pb2 {
@@ -41,6 +41,7 @@ class CMsgProtoBufHeader extends \ProtobufMessage
     const SESSION_DISPOSITION = 38;
     const WG_TOKEN = 39;
     const WEBUI_AUTH_KEY = 40;
+    const EXCLUDE_CLIENT_SESSIONIDS = 41;
 
     const IP = 15;
     const IP_V6 = 29;
@@ -211,6 +212,11 @@ class CMsgProtoBufHeader extends \ProtobufMessage
             'required' => false,
             'type' => \ProtobufMessage::PB_TYPE_STRING,
         ),
+        self::EXCLUDE_CLIENT_SESSIONIDS => array(
+            'name' => 'exclude_client_sessionids',
+            'repeated' => true,
+            'type' => \ProtobufMessage::PB_TYPE_INT,
+        ),
 
         self::IP => array(
             'name' => 'ip',
@@ -270,6 +276,7 @@ class CMsgProtoBufHeader extends \ProtobufMessage
         $this->values[self::SESSION_DISPOSITION] = self::$fields[self::SESSION_DISPOSITION]['default'];
         $this->values[self::WG_TOKEN] = null;
         $this->values[self::WEBUI_AUTH_KEY] = null;
+        $this->values[self::EXCLUDE_CLIENT_SESSIONIDS] = array();
 
         $this->values[self::IP] = null;
         $this->values[self::IP_V6] = null;
@@ -1348,7 +1355,77 @@ class CMsgProtoBufHeader extends \ProtobufMessage
         return $this->get(self::WEBUI_AUTH_KEY) !== null;
     }
 
+    /**
+     * Appends value to 'exclude_client_sessionids' list
+     *
+     * @param integer $value Value to append
+     *
+     * @return null
+     */
+    public function appendExcludeClientSessionids($value)
+    {
+        return $this->append(self::EXCLUDE_CLIENT_SESSIONIDS, $value);
+    }
 
+    /**
+     * Clears 'exclude_client_sessionids' list
+     *
+     * @return null
+     */
+    public function clearExcludeClientSessionids()
+    {
+        return $this->clear(self::EXCLUDE_CLIENT_SESSIONIDS);
+    }
+    /**
+     * Returns 'exclude_client_sessionids' list
+     *
+     * @return integer[]
+     */
+    public function getExcludeClientSessionids()
+    {
+        return $this->get(self::EXCLUDE_CLIENT_SESSIONIDS);
+    }
+
+    /**
+     * Returns true if 'exclude_client_sessionids' property is set, false otherwise
+     *
+     * @return boolean
+     */
+    public function hasExcludeClientSessionids()
+    {
+        return count($this->get(self::EXCLUDE_CLIENT_SESSIONIDS)) !== 0;
+    }
+
+    /**
+     * Returns 'exclude_client_sessionids' iterator
+     *
+     * @return \ArrayIterator
+     */
+    public function getExcludeClientSessionidsIterator()
+    {
+        return new \ArrayIterator($this->get(self::EXCLUDE_CLIENT_SESSIONIDS));
+    }
+    /**
+     * Returns element from 'exclude_client_sessionids' list at given offset
+     *
+     * @param int $offset Position in list
+     *
+     * @return integer
+     */
+    public function getExcludeClientSessionidsAt($offset)
+    {
+        return $this->get(self::EXCLUDE_CLIENT_SESSIONIDS, $offset);
+    }
+
+    /**
+     * Returns count of 'exclude_client_sessionids' list
+     *
+     * @return int
+     */
+    public function getExcludeClientSessionidsCount()
+    {
+        return $this->count(self::EXCLUDE_CLIENT_SESSIONIDS);
+    }
 
     /**
      * Sets value of 'ip' property
