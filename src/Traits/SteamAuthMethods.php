@@ -264,6 +264,11 @@ trait SteamAuthMethods
         $curl->setConnectTimeout(30);
         $curl->setTimeout(60);
 
+        $curl->setHeaders([
+            'Origin' => 'https://steamcommunity.com',
+            'Referer' => 'https://steamcommunity.com/'
+        ]);
+
         if ($this->proxy) {
             if (array_key_exists('domain_name', $this->proxy))
                 $curl->setProxy($this->proxy['domain_name']);
