@@ -75,7 +75,7 @@ trait UsefulMethods
                             'steamLoginSecure' => '',
                             'sessionid' => '',
                             'mobileClient' => 'android',
-                            'mobileClientVersion' => '777777 3.6.1',
+                            'mobileClientVersion' => '3.9.7',
                             'Steam_Language' => 'english'
                         ]
                     ],
