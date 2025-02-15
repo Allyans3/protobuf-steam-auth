@@ -94,7 +94,7 @@ PHP_METHOD(ProtobufMessage, __construct)
 {
 	zval values_array;
     array_init(&values_array);
-    zend_update_property(pb_entry, getThis(), PB_VALUES_PROPERTY, sizeof(PB_VALUES_PROPERTY) - 1, &values_array);
+    zend_update_property(pb_entry, Z_OBJ_P(ZEND_THIS), PB_VALUES_PROPERTY, sizeof(PB_VALUES_PROPERTY) - 1, &values_array);
 }
 
 PHP_METHOD(ProtobufMessage, append)
